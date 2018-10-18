@@ -189,7 +189,15 @@ public class MyLinkedList<T> implements List<T> {
         } else if (tail.getValue().equals(value)) {
             popBack();
         } else {
-
+            Node<T> current = head;
+            while (current.getNext() != null) {
+                if (current.getNext().getValue().equals(value)) {
+                    current.setNext(current.getNext().getNext());
+                    if (current.getNext() == null) {
+                        tail = current;
+                    }
+                }
+            }
         }
     }
 }
