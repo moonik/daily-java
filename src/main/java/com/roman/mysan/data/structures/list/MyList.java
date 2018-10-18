@@ -1,9 +1,9 @@
-package com.roman.mysan.data.structures;
+package com.roman.mysan.data.structures.list;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-public class MyList<T> {
+public class MyList<T> implements List<T> {
 
     private Object[] arr;
     private int capacity = 16;
@@ -32,18 +32,22 @@ public class MyList<T> {
         }
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public int capacity() {
         return capacity;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public T at(int index) {
         if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
@@ -51,6 +55,7 @@ public class MyList<T> {
         return (T) arr[index];
     }
 
+    @Override
     public void push(T item) {
         if (size >= capacity) {
             resize();
@@ -58,6 +63,7 @@ public class MyList<T> {
         arr[size++] = item;
     }
 
+    @Override
     public void insert(int index, T item) {
         if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
@@ -73,6 +79,7 @@ public class MyList<T> {
         }
     }
 
+    @Override
     public void prepend(T item) {
         size++;
 
@@ -87,6 +94,7 @@ public class MyList<T> {
         }
     }
 
+    @Override
     public T pop() {
         if (isEmpty()) {
             throw new ArrayIndexOutOfBoundsException();
@@ -96,6 +104,7 @@ public class MyList<T> {
         return item;
     }
 
+    @Override
     public void delete(int index) {
         if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
@@ -106,6 +115,7 @@ public class MyList<T> {
         arr[--size] = null;
     }
 
+    @Override
     public void remove(T item) {
         Object[] buffer = new Object[capacity];
         int j = 0;
@@ -118,6 +128,7 @@ public class MyList<T> {
         arr = buffer;
     }
 
+    @Override
     public int find(T item) {
         for (int i = 0; i < size; i++) {
             if (arr[i].equals(item)) {

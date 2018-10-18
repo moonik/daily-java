@@ -1,5 +1,6 @@
 package com.roman.mysan.data.structures;
 
+import com.roman.mysan.data.structures.list.MyList;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -7,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.format;
 
 public class MyListTest {
 
