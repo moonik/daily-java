@@ -150,6 +150,19 @@ public class MyLinkedListTest {
         }
     }
 
+    @Test
+    public void should_pop_back_without_tail() {
+        //given
+        List<Integer> list = createList();
+        Integer expected = 99;
+
+        //when
+        Integer actual = list.popBackWithNoTail();
+
+        //then
+        assertEquals(expected, actual);
+    }
+
     private static List<Integer> createList() {
         List<Integer> linkedList = new MyLinkedList<>();
         for (int i = 0; i < 100; i++) {
