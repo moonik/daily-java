@@ -35,6 +35,7 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public void pushFront(T value) {
         head = new Node<>(head, value);
+        size++;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class MyLinkedList<T> implements List<T> {
             head = node;
             tail = head;
         } else {
-            node.setNext(tail);
+            tail.setNext(node);
             tail = node;
         }
         size++;
@@ -78,6 +79,7 @@ public class MyLinkedList<T> implements List<T> {
                 size--;
                 return value;
             }
+            current = current.getNext();
         }
         return popFront(); //if there is only 1 element in the list
     }
@@ -169,14 +171,16 @@ public class MyLinkedList<T> implements List<T> {
 
         Node<T> current = head;
         Node<T> prev = null;
+        Node<T> next;
         tail = current;
-        while (current.getNext() != null) {
+
+        while (current != null) {
+            next = current.getNext();
             current.setNext(prev);
             prev = current;
-            current = current.getNext();
+            current = next;
         }
-        current.setNext(prev);
-        head = current;
+        head = prev;
     }
 
     @Override

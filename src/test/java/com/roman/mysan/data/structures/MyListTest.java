@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 public class MyListTest {
 
     @Test
-    public void shouldCreateArrayList() {
+    public void should_create_array_list() {
         //given
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5));
         int capacity = 17;
@@ -31,7 +31,7 @@ public class MyListTest {
     }
 
     @Test
-    public void shouldInsertAndPrependIntoList() {
+    public void should_insert_and_prepend_into_list() {
         //given
         MyList<Integer> list = new MyList<>();
         Integer[] elements = new Integer[] {1, 2, 3, 4, 99};
@@ -59,7 +59,7 @@ public class MyListTest {
     }
 
     @Test
-    public void shouldResizeArray() {
+    public void should_resize_array() {
         //given
         MyList<Integer> myList = new MyList<>();
         int expectedCapacity = 32;
@@ -74,7 +74,7 @@ public class MyListTest {
     }
 
     @Test
-    public void shouldDeleteItem() {
+    public void should_delete_item() {
         //given
         MyList<Integer> myList = new MyList<>();
         Integer[] items = new Integer[] {1, 2, 3, 4, 2, 7, 4, 5, 2, 9};
