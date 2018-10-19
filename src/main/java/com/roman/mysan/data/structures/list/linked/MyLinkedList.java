@@ -56,8 +56,7 @@ public class MyLinkedList<T> implements List<T> {
     public void pushBack(T value) {
         Node<T> node = new Node<>(null, value);
         if (empty()) {
-            head = node;
-            tail = head;
+            head = tail = node;
         } else {
             tail.setNext(node);
             tail = node;
@@ -82,6 +81,26 @@ public class MyLinkedList<T> implements List<T> {
             current = current.getNext();
         }
         return popFront(); //if there is only 1 element in the list
+    }
+
+    @Override
+    public T popBackWithNoTail() {
+        Node<T> prev = null;
+        Node<T> current = head;
+
+        while (current.getNext() != null) {
+            prev = current;
+            current = current.getNext();
+        }
+
+        T value = current.getValue();
+
+        if (prev == null) {
+            head = null;
+        } else
+            prev.setNext(null);
+
+        return value;
     }
 
     @Override

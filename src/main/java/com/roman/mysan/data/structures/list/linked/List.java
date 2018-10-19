@@ -36,6 +36,12 @@ public interface List<T> {
     T popBack();
 
     /**
+     * pop back for linked list without tail
+     * @return
+     */
+    T popBackWithNoTail();
+
+    /**
      * get value of front item
      * @return
      */
