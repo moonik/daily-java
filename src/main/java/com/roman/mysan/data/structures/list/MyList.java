@@ -2,6 +2,7 @@ package com.roman.mysan.data.structures.list;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Hashtable;
 
 public class MyList<T> implements List<T> {
 
@@ -58,7 +59,7 @@ public class MyList<T> implements List<T> {
     @Override
     public void push(T item) {
         if (size >= capacity) {
-            resize();
+            resize(capacity*2);
         }
         arr[size++] = item;
     }
@@ -70,7 +71,7 @@ public class MyList<T> implements List<T> {
         }
         size++;
         if (size >= capacity) {
-            resize();
+            resize(capacity*2);
         }
         for (; index < size; index++) {
             Object tmp = arr[index];
@@ -84,7 +85,7 @@ public class MyList<T> implements List<T> {
         size++;
 
         if (size >= capacity) {
-            resize();
+            resize(capacity*2);
         }
 
         for (int i = 0; i < size; i++) {
@@ -101,6 +102,9 @@ public class MyList<T> implements List<T> {
         }
         T item = (T) arr[size--];
         arr[size] = null;
+        if (size < capacity/4) {
+            resize(capacity/2);
+        }
         return item;
     }
 
@@ -113,19 +117,23 @@ public class MyList<T> implements List<T> {
             arr[index] = arr[index+1];
         }
         arr[--size] = null;
+        if (size < capacity/4) {
+            resize(capacity/2);
+        }
     }
 
     @Override
     public void remove(T item) {
-        Object[] buffer = new Object[capacity];
-        int j = 0;
         for (int i = 0; i < size; i++) {
-            if (!arr[i].equals(item)) {
-                buffer[j++] = arr[i];
-            } else
-                size--;
+            if (arr[i].equals(item)) {
+                delete(i);
+                i--;
+            }
         }
-        arr = buffer;
+        System.out.println(arr);
+        if (size < capacity/4) {
+            resize(capacity/2);
+        }
     }
 
     @Override
@@ -138,8 +146,8 @@ public class MyList<T> implements List<T> {
         return -1;
     }
 
-    private void resize() {
-        capacity *= 2;
+    private void resize(int s) {
+        capacity = s;
         arr = Arrays.copyOf(arr, capacity);
     }
 }

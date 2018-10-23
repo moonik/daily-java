@@ -92,9 +92,8 @@ public class MyListTest {
 
         //when
         myList.remove(items[1]);
-
         //then
         assertEquals(items[3], myList.at(1));
-        assertEquals(size-3, myList.size());
+        assertEquals(size-4, myList.size());
     }
 }
