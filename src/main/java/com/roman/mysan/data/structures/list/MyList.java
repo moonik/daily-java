@@ -27,8 +27,6 @@ public class MyList<T> implements List<T> {
 
     private void checkMultipleOfEight(int size) {
         if (size > capacity) {
-//            size = --size >> 2;
-//            capacity = (int) Math.pow(2, ++size);
             capacity = (int) Math.pow(2, Math.ceil(Math.log(size)/Math.log(2)));
         }
     }
