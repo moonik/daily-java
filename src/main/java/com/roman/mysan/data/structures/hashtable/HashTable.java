@@ -29,7 +29,6 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public void add(K key, V value) {
         int hashCode = hash(key);
-        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -49,7 +48,6 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public boolean exists(K key) {
         int hashCode = hash(key);
-        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -66,7 +64,6 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int hashCode = hash(key);
-        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
