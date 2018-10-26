@@ -39,7 +39,7 @@ public class HashTable<K, V> implements Map<K, V> {
                 table[hashCode].setValue(value);
                 return;
             }
-            hashCode = (hashCode + i++) % m;
+            hashCode = (hashCode + 1) % m;
         }
         table[hashCode] = new Entry<>(key, value);
         n++;
@@ -58,7 +58,7 @@ public class HashTable<K, V> implements Map<K, V> {
             if (entry.getKey().equals(key)) {
                 return true;
             }
-            hashCode = (hashCode + i++) % m;
+            hashCode = (hashCode + 1) % m;
         }
         return false;
     }
@@ -75,7 +75,7 @@ public class HashTable<K, V> implements Map<K, V> {
             if (entry.getKey().equals(key)) {
                 return entry.getValue();
             } else
-                hashCode = (hashCode + i++) % m;
+                hashCode = (hashCode + 1) % m;
         }
         return null;
     }
@@ -83,7 +83,6 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public Entry<K, V> remove(K key) {
         int hashCode = hash(key);
-        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -93,7 +92,7 @@ public class HashTable<K, V> implements Map<K, V> {
                 entry.setKey(null);
                 return entry;
             }
-            hashCode = (hashCode + i++) % m; // new
+            hashCode = (hashCode + 1) % m; // new
         }
         return null;
     }
