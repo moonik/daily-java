@@ -29,6 +29,7 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public void add(K key, V value) {
         int hashCode = hash(key);
+        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -38,7 +39,7 @@ public class HashTable<K, V> implements Map<K, V> {
                 table[hashCode].setValue(value);
                 return;
             }
-            hashCode = (hashCode + 1) % m;
+            hashCode = (hashCode + i++) % m;
         }
         table[hashCode] = new Entry<>(key, value);
         n++;
@@ -48,6 +49,7 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public boolean exists(K key) {
         int hashCode = hash(key);
+        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -56,7 +58,7 @@ public class HashTable<K, V> implements Map<K, V> {
             if (entry.getKey().equals(key)) {
                 return true;
             }
-            hashCode = (hashCode + 1) % m;
+            hashCode = (hashCode + i++) % m;
         }
         return false;
     }
@@ -64,6 +66,7 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int hashCode = hash(key);
+        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -72,7 +75,7 @@ public class HashTable<K, V> implements Map<K, V> {
             if (entry.getKey().equals(key)) {
                 return entry.getValue();
             } else
-                hashCode = (hashCode + 1) % m;
+                hashCode = (hashCode + i++) % m;
         }
         return null;
     }
@@ -80,6 +83,7 @@ public class HashTable<K, V> implements Map<K, V> {
     @Override
     public Entry<K, V> remove(K key) {
         int hashCode = hash(key);
+        int i = 1;
         while (table[hashCode] != null) {
             Entry<K, V> entry = table[hashCode];
             if (entry.getKey() == null) {
@@ -89,6 +93,7 @@ public class HashTable<K, V> implements Map<K, V> {
                 entry.setKey(null);
                 return entry;
             }
+            hashCode = (hashCode + i++) % m; // new
         }
         return null;
     }

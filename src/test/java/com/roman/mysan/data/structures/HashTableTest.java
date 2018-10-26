@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertEquals;
 public class HashTableTest {
 
     @Test
-    @Parameters({"Cat, Meow, Meow", "Dog, Woof, Woof"})
+    @Parameters({"Cat, Meow, Meow", "Dog, Woof, Woof", "aCt, woem, woem"})
     public void should_insert_with_string_keys_to_table(String key, String value, String expected) {
         //given
         HashTable<String, String> table = new HashTable<>();
