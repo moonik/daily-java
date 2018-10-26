@@ -9,12 +9,13 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 @RunWith(JUnitParamsRunner.class)
 public class HashTableTest {
 
     @Test
-    @Parameters({"Cat, Meow, Meow", "Dog, Woof, Woof", "aCt, woem, woem"})
+    @Parameters({"Cat, Meow, Meow", "Dog, Woof, Woof"})
     public void should_insert_with_string_keys_to_table(String key, String value, String expected) {
         //given
         HashTable<String, String> table = new HashTable<>();
@@ -110,6 +111,22 @@ public class HashTableTest {
 
         //then
         assertEquals(notExists, table.exists(cat));
+    }
+
+    @Test
+    public void should_handle_collision() {
+        //given
+        String key = "taC";
+        String cat = "Cat";
+        String value = "value";
+        HashTable<String, String> table = create();
+
+        //when
+        table.add(key, value);
+
+        //then
+        assertTrue(table.exists(cat));
+        assertTrue(table.exists(key));
     }
 
     private static HashTable<String, String> create() {
