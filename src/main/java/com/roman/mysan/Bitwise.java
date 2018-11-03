@@ -1,5 +1,7 @@
 package com.roman.mysan;
 
+import com.roman.mysan.data.structures.list.linked.Node;
+
 public class Bitwise {
 
     private static int findMin(int x, int y) {
@@ -176,7 +178,42 @@ public class Bitwise {
         return result;
     }
 
+    private static boolean checkIfHasZeroByte(int x) {
+        if ((x & 0x000000FF) == 0)
+            return true;
+        if ((x & 0x0000FF00) == 0)
+            return true;
+        if ((x & 0x00FF0000) == 0)
+            return true;
+        if ((x & 0xFF000000) == 0)
+            return true;
+        return false;
+    }
+
+    static int extend(int value, int smallSize, int bigSize) {
+            // i.e. to extend from 5 to 8 bits, use extend(x,5,8)
+        int leftShift  = bigSize - smallSize;
+        int rightShift = bigSize - leftShift;
+        // extend and fill lower bits smartly
+        return (value << leftShift) | (value >> rightShift);
+    }
+
+    static float invSquareRoot(float x) {
+        // for Newton iteration
+        float xHalf = 0.5f*x;
+        // same as above
+        int i = (int) x;
+        i = 0x5F375A86 - (i>>1);
+        // one Newton iteration, repeating further improves precision
+        return x * (1.5f - xHalf*x*x);
+    }
+
+    int rotateLeft(int x, int n) {
+        return (x << n) | (x >> (-n & 31));
+    }
+    
     public static void main(String[] args) {
+        //System.out.println(invSquareRoot(9));
         //System.out.println(detectIfOppositeSigns(-1, -1));
         //setOrClearBits(15, 1, 0);
         //negate(1, 1);
@@ -191,6 +228,7 @@ public class Bitwise {
         //consecutive(8);
         //System.out.println(nextPowerOfTwo(9));
         //System.out.println(absOfFloat(-2.123f));
-        System.out.println(lowestBitNotSetSimple(2));
+        //System.out.println(lowestBitNotSetSimple(2));
+        //System.out.println((extend(3, 4, 16)));
     }
 }
