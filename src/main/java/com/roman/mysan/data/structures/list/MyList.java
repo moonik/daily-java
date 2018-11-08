@@ -2,7 +2,6 @@ package com.roman.mysan.data.structures.list;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Hashtable;
 
 public class MyList<T> implements List<T> {
 

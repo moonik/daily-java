@@ -83,4 +83,6 @@ public interface List<T> {
      * @param value
      */
     void removeValue(T value);
+
+    Node<T> getMiddle();
 }

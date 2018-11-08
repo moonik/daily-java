@@ -223,4 +223,21 @@ public class MyLinkedList<T> implements List<T> {
             }
         }
     }
+
+    @Override
+    public Node<T> getMiddle() {
+        Node<T> current = head;
+        Node<T> next = current.getNext();
+        if (next == null) {
+            return current;
+        }
+        while (next != null) {
+            current = current.getNext();
+            if (next.getNext() != null) {
+                next = next.getNext().getNext();
+            } else
+                break;
+        }
+        return current;
+    }
 }

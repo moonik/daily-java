@@ -2,6 +2,7 @@ package com.roman.mysan.data.structures;
 
 import com.roman.mysan.data.structures.list.linked.List;
 import com.roman.mysan.data.structures.list.linked.MyLinkedList;
+import com.roman.mysan.data.structures.list.linked.Node;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -161,6 +162,81 @@ public class MyLinkedListTest {
 
         //then
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void should_get_middle_element_with_one_element_list() {
+        //given
+        Integer expectedMiddle = 0;
+        List<Integer> list = new MyLinkedList<>();
+        list.pushBack(expectedMiddle);
+
+        //when
+        Node<Integer> middle = list.getMiddle();
+
+        //then
+        assertEquals(expectedMiddle, middle.getValue());
+    }
+
+    @Test
+    public void should_get_middle_element_with_two_elements_list() {
+        //given
+        Integer expectedMiddle = 1;
+        List<Integer> list = new MyLinkedList<>();
+        list.pushBack(0);
+        list.pushBack(1);
+
+        //when
+        Node<Integer> middle = list.getMiddle();
+
+        //then
+        assertEquals(expectedMiddle, middle.getValue());
+    }
+
+    @Test
+    public void should_get_middle_element_with_three_elements_list() {
+        //given
+        Integer expectedMiddle = 1;
+        List<Integer> list = new MyLinkedList<>();
+        list.pushBack(0);
+        list.pushBack(1);
+        list.pushBack(2);
+
+        //when
+        Node<Integer> middle = list.getMiddle();
+
+        //then
+        assertEquals(expectedMiddle, middle.getValue());
+    }
+
+    @Test
+    public void should_get_middle_with_four_elements_list() {
+        //given
+        Integer expectedMiddle = 2;
+        List<Integer> list = new MyLinkedList<>();
+        list.pushBack(0);
+        list.pushBack(1);
+        list.pushBack(2);
+        list.pushBack(3);
+
+        //when
+        Node<Integer> middle = list.getMiddle();
+
+        //then
+        assertEquals(expectedMiddle, middle.getValue());
+    }
+
+    @Test
+    public void should_get_middle() {
+        //given
+        Integer expectedMiddle = 50;
+        List<Integer> list = createList();
+
+        //when
+        Node<Integer> middle = list.getMiddle();
+
+        //then
+        assertEquals(expectedMiddle, middle.getValue());
     }
 
     private static List<Integer> createList() {
