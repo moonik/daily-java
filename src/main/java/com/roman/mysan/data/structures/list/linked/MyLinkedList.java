@@ -165,21 +165,20 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public T valueNfromEnd(int n) {
-        if (n < 0 || n >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (n == 0) {
-            return tail.getValue();
-        }
-        if (n == size-1) {
-            return head.getValue();
-        }
         Node<T> current = head;
-        while (n != 0) {
+        while (n > 0) {
             current = current.getNext();
+            if (current == null) {
+                return null;
+            }
             n--;
         }
-        return current.getValue();
+        Node<T> behind = head;
+        while (current.getNext() != null) {
+            current = current.getNext();
+            behind = behind.getNext();
+        }
+        return behind.getValue();
     }
 
     @Override
