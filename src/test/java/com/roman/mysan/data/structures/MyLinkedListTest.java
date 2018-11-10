@@ -125,7 +125,7 @@ public class MyLinkedListTest {
         List<Integer> linkedList = createList();
         Integer valueOne = 99;
         Integer valueTwo = 35;
-        int[] n = new int[] {0, 35};
+        int[] n = new int[] {0, 64};
 
         //when
         Integer actualValueOne = linkedList.valueNfromEnd(n[0]);
@@ -133,7 +133,7 @@ public class MyLinkedListTest {
 
         //then
         assertEquals(valueOne, actualValueOne);
-        //assertEquals(valueTwo, actualValueTwo);
+        assertEquals(valueTwo, actualValueTwo);
     }
 
     @Test
