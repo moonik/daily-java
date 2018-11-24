@@ -9,7 +9,7 @@ public class BST<T extends Comparable<T>> {
 
     private Node<T> insert(Node<T> root, T data) {
         if (root == null) {
-            return new Node<>(data);
+            return new Node<T>(data);
         }
         int cmp = root.getValue().compareTo(data);
         if (cmp > 0) {
@@ -68,5 +68,55 @@ public class BST<T extends Comparable<T>> {
         System.out.println(root.getValue());
         print(root.getLeft());
         print(root.getRight());
+    }
+
+    public boolean isBst(Node<Integer> root) {
+        return isBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBst(Node<Integer> root, Integer min, Integer max) {
+        if (root == null) {
+            return true;
+        }
+        int cmpToMin = root.getValue().compareTo(min);
+        int cmpToMax = root.getValue().compareTo(max);
+        return cmpToMin > 0 && cmpToMax < 0
+                && isBst(root.getLeft(), min, root.getValue())
+                && isBst(root.getRight(), root.getValue(), max);
+    }
+
+    public T getSuccessor(T value) {
+        return getSuccessor(root, value);
+    }
+
+    private T getSuccessor(Node<T> root, T value) {
+        Node<T> current = root;
+        while (current != null) {
+            int cmp = current.getValue().compareTo(value);
+            if (cmp > 0) {
+                current = current.getLeft();
+            } else if (cmp < 0) {
+                current = current.getRight();
+            } else
+                break;
+        }
+        if (current == null) {
+            return null;
+        }
+        if (current.getRight() != null) {
+            return findMin(current.getRight()).getValue();
+        } else {
+            Node<T> successor = null;
+            Node<T> ancestor = root;
+            while (ancestor != null) {
+                int cmp = ancestor.getValue().compareTo(value);
+                if (cmp > 0) {
+                    successor = ancestor;
+                    ancestor = ancestor.getLeft();
+                } else
+                    ancestor = ancestor.getRight();
+            }
+            return successor.getValue();
+        }
     }
 }

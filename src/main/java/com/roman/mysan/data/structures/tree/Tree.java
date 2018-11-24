@@ -12,9 +12,6 @@ public class Tree<T extends Comparable<? super T>> {
         bst.insert(97);
         bst.insert(99);
         bst.insert(100);
-        bst.print();
-        bst.delete(98);
-        System.out.println("After deletiong: ");
-        bst.print();
+        System.out.print(bst.getSuccessor(0));
     }
 }
