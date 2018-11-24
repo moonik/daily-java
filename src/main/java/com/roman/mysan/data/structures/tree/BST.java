@@ -119,4 +119,26 @@ public class BST<T extends Comparable<T>> {
             return successor.getValue();
         }
     }
+
+    public int getNodeCount() {
+        return getNodeCount(root);
+    }
+
+    private int getNodeCount(Node<T> root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + getNodeCount(root.getLeft()) + getNodeCount(root.getRight());
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node<T> root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(height(root.getLeft()), height(root.getRight()));
+    }
 }
