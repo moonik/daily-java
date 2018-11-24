@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class TreeSearch<T> {
+public class TreeSearch<T extends Comparable<T>> {
 
     public void bfs(Node<T> root) {
         Queue<Node<T>> queue = new LinkedList<>();

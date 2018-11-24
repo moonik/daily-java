@@ -3,7 +3,7 @@ package com.roman.mysan.data.structures.tree;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Node<T> {
+public class Node<T extends Comparable<T>> {
     private T value;
     private LinkedList<Node<T>> children;
     private Node<T> left;
