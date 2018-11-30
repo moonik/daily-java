@@ -27,7 +27,7 @@ public class PriorityQueue<T extends Comparable<T>> implements Iterable<T> {
     public void heapify(Object[] arr) {
         int n = arr.length;
         for (int k = n/2-1; k >= 0; k--) {
-            siftDown(heap, k, n);
+            siftDown(arr, k, n);
         }
     }
 
@@ -41,26 +41,26 @@ public class PriorityQueue<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
-    private void siftDown(Object[] heap, int k, int n) {
+    private void siftDown(Object[] arr, int k, int n) {
         while (k*2+1 < n) {
             int j = 2*k+1;
-            if (!swapIfNeed(heap, k, j)) {
+            if (!swapIfNeed(arr, k, j)) {
                 break;
             }
             k = j;
         }
     }
 
-    private boolean swapIfNeed(Object[] heap, int i, int j) {
+    private boolean swapIfNeed(Object[] arr, int i, int j) {
         if (j < n && j+1 < n) {
-            if (((T) heap[j]).compareTo(((T) heap[j + 1])) < 0) {
+            if (((T) arr[j]).compareTo(((T) arr[j+1])) < 0) {
                 j++;
             }
         }
-        if (((T) heap[i]).compareTo(((T) heap[j])) >= 0) {
+        if (((T) arr[i]).compareTo(((T) arr[j])) >= 0) {
             return false;
         }
-        swap(heap, i, j);
+        swap(arr, i, j);
         return true;
     }
 
