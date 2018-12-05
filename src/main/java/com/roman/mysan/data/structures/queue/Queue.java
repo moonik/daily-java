@@ -2,7 +2,7 @@ package com.roman.mysan.data.structures.queue;
 
 import com.roman.mysan.data.structures.list.linked.Node;
 
-public class Queue<T> {
+public class Queue<T extends Comparable<T>> {
     private Node<T> head;
     private Node<T> tail;
 

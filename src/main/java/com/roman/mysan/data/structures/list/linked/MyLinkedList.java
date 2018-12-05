@@ -1,6 +1,6 @@
 package com.roman.mysan.data.structures.list.linked;
 
-public class MyLinkedList<T> implements List<T> {
+public class MyLinkedList<T extends Comparable<T>> implements List<T> {
 
     private Node<T> head;
     private Node<T> tail;
@@ -230,13 +230,89 @@ public class MyLinkedList<T> implements List<T> {
         if (next == null) {
             return current;
         }
+
         while (next != null) {
-            current = current.getNext();
+//            current = current.getNext();  if you want the left halve to be bigger
+//                                          (1 element after middle and 2 before) [1,2,3,4] => 3
             if (next.getNext() != null) {
                 next = next.getNext().getNext();
             } else
                 break;
+            current = current.getNext(); //left halve will be smaller
+                                        // (1 element before middle and 2 after) [1,2,3,4] => 2
         }
         return current;
+    }
+
+    public Node<T> mergeSort(Node<T> head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+        Node first = head;
+        Node second = head.getNext();
+
+        while (second != null) {
+            if (second.getNext() != null) {
+                second = second.getNext().getNext();
+            } else
+                break;
+            first = first.getNext();
+        }
+        second = first.getNext();
+        first.setNext(null);
+
+        Node left = mergeSort(head);
+        Node right = mergeSort(second);
+
+        return merge(left, right);
+    }
+
+    private Node<T> merge(Node first, Node second) {
+        Node dummy = new Node(null, 0);
+        Node tail = dummy;
+
+        while (true) {
+            if (first == null) {
+                tail.setNext(second);
+                break;
+            }
+            if (second == null) {
+                tail.setNext(first);
+                break;
+            }
+            if (first.getValue().compareTo(second.getValue()) >= 0) {
+                tail.setNext(second);
+                second = second.getNext();
+            } else {
+                tail.setNext(first);
+                first = first.getNext();
+            }
+            tail = tail.getNext();
+        }
+        return dummy.getNext();
+    }
+
+    public static void main(String[] args) {
+        Node h1 = new Node(null, 99);
+        Node n1 = new Node(null, 5);
+        Node n2 = new Node(null, 91);
+        Node n3 = new Node(null, 7);
+        h1.setNext(n1);
+        n1.setNext(n2);
+        n2.setNext(n3);
+
+        Node h2 = new Node(null, 0);
+        n3.setNext(h2);
+        Node n4 = new Node(null, 4);
+        Node hn5 = new Node(null, 3);
+        h2.setNext(n4);
+        n4.setNext(hn5);
+
+        MyLinkedList<Integer> s = new MyLinkedList<>();
+        Node head = s.mergeSort(h1);
+        while (head != null) {
+            System.out.println(head.getValue());
+            head = head.getNext();
+        }
     }
 }

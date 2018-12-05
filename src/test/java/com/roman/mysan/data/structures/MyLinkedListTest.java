@@ -181,7 +181,7 @@ public class MyLinkedListTest {
     @Test
     public void should_get_middle_element_with_two_elements_list() {
         //given
-        Integer expectedMiddle = 1;
+        Integer expectedMiddle = 0;
         List<Integer> list = new MyLinkedList<>();
         list.pushBack(0);
         list.pushBack(1);
@@ -212,7 +212,7 @@ public class MyLinkedListTest {
     @Test
     public void should_get_middle_with_four_elements_list() {
         //given
-        Integer expectedMiddle = 2;
+        Integer expectedMiddle = 1;
         List<Integer> list = new MyLinkedList<>();
         list.pushBack(0);
         list.pushBack(1);
@@ -229,7 +229,7 @@ public class MyLinkedListTest {
     @Test
     public void should_get_middle() {
         //given
-        Integer expectedMiddle = 50;
+        Integer expectedMiddle = 49;
         List<Integer> list = createList();
 
         //when

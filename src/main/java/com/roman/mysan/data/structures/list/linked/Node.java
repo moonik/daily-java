@@ -1,6 +1,6 @@
 package com.roman.mysan.data.structures.list.linked;
 
-public class Node<T> {
+public class Node<T extends Comparable<T>> {
 
     private Node<T> next;
     private T value;
