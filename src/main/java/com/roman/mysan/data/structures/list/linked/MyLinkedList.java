@@ -234,6 +234,10 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
         while (next != null) {
 //            current = current.getNext();  if you want the left halve to be bigger
 //                                          (1 element after middle and 2 before) [1,2,3,4] => 3
+//            next = next.getNext();
+//            if (next != null) {
+//                next = next.getNext();
+//            }
             if (next.getNext() != null) {
                 next = next.getNext().getNext();
             } else
