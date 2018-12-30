@@ -8,7 +8,7 @@ public class WeightedGraph extends Graph {
         super(vertices);
     }
 
-    private void addEdge(int source, int destination, int weight) {
+    void addEdge(int source, int destination, int weight) {
         this.vertices.get(source).getEdges().add(new Vertex(destination, vertices.get(destination).getValue(), weight));
         this.vertices.get(destination).getEdges().add(new Vertex(source, vertices.get(source).getValue(), weight));
     }
@@ -20,22 +20,26 @@ public class WeightedGraph extends Graph {
         Map<Integer, Integer> parents = new HashMap<>();
 
         for (Vertex v : vertices) {
-            weights.put(v.getValue(), Integer.MAX_VALUE);
+            weights.put(v.getId(), Integer.MAX_VALUE);
         }
 
-        weights.put(0, 0);
-        queue.add(vertices.get(0));
+        for (Vertex vertex : vertices) {
+            if (!discovered.contains(vertex.getId())) {
+                weights.put(vertex.getId(), 0);
+                queue.add(vertex);
 
-        while (!queue.isEmpty()) {
-            Vertex v = queue.poll();
-            discovered.add(v.getId());
+                while (!queue.isEmpty()) {
+                    Vertex v = queue.poll();
+                    discovered.add(v.getId());
 
-            for (Vertex u : getEdges(v.getId())) {
-                if (!discovered.contains(u.getId())) {
-                    if (u.getWeight() < weights.get(u.getValue())) {
-                        parents.put(u.getValue(), v.getValue());
-                        weights.put(u.getValue(), u.getWeight());
-                        queue.add(u);
+                    for (Vertex u : getEdges(v.getId())) {
+                        if (!discovered.contains(u.getId())) {
+                            if (u.getWeight() < weights.get(u.getId())) {
+                                parents.put(u.getId(), v.getId());
+                                weights.put(u.getId(), u.getWeight());
+                                queue.add(u);
+                            }
+                        }
                     }
                 }
             }
@@ -49,7 +53,7 @@ public class WeightedGraph extends Graph {
         Map<Integer, Integer> parents = new HashMap<>();
 
         for (Vertex vertex : vertices) {
-            weights.put(vertex.getValue(), Integer.MAX_VALUE);
+            weights.put(vertex.getId(), Integer.MAX_VALUE);
         }
 
         weights.put(source, 0);
@@ -95,6 +99,12 @@ public class WeightedGraph extends Graph {
         graph.addEdge(1, 4, 4);
 
         graph.addEdge(3, 4, 3);
+        vertices.add(new Vertex(5, 5));
+        vertices.add(new Vertex(6,6));
+        vertices.add(new Vertex(7, 7));
+        graph.addEdge(5, 6, 8);
+        graph.addEdge(6, 7, 1);
+        graph.addEdge(5, 7, 2);
 
         System.out.println("Prim's algorithm test: ");
         graph.primsAlgorithm();
