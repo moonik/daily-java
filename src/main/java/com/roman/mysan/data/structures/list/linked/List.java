@@ -1,6 +1,7 @@
 package com.roman.mysan.data.structures.list.linked;
 
 public interface List<T extends Comparable<T>> {
+
     int size();
     boolean empty();
 

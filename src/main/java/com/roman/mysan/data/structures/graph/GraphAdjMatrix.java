@@ -12,7 +12,7 @@ public class GraphAdjMatrix {
         this.adjMatrix = new boolean[v][v];
     }
 
-    private void addEdje(int source, int destination) {
+    private void addEdge(int source, int destination) {
         this.adjMatrix[source][destination] = true;
         this.adjMatrix[destination][source] = true;
     }
@@ -81,13 +81,13 @@ public class GraphAdjMatrix {
 
     public static void main(String[] args) {
         GraphAdjMatrix graphAdjMatrix = new GraphAdjMatrix(7);
-        graphAdjMatrix.addEdje(0, 1);
-        graphAdjMatrix.addEdje(1, 2);
-        graphAdjMatrix.addEdje(2, 3);
-        graphAdjMatrix.addEdje(2, 4);
-        graphAdjMatrix.addEdje(0, 5);
-        graphAdjMatrix.addEdje(5, 6);
-        graphAdjMatrix.addEdje(6, 2);
+        graphAdjMatrix.addEdge(0, 1);
+        graphAdjMatrix.addEdge(1, 2);
+        graphAdjMatrix.addEdge(2, 3);
+        graphAdjMatrix.addEdge(2, 4);
+        graphAdjMatrix.addEdge(0, 5);
+        graphAdjMatrix.addEdge(5, 6);
+        graphAdjMatrix.addEdge(6, 2);
 
         //graphAdjMatrix.dfs();
         //graphAdjMatrix.dfsIter();
