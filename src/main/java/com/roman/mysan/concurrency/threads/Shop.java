@@ -3,7 +3,7 @@ package com.roman.mysan.concurrency.threads;
 import java.util.Scanner;
 
 //wait and notify example
-//producer - consumer pattern
+//producer - consumer pattern example
 public class Shop {
 
     private String item;

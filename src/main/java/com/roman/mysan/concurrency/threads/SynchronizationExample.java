@@ -1,14 +1,15 @@
 package com.roman.mysan.concurrency.threads;
 
-import java.sql.ResultSet;
 import java.util.Objects;
 
 public class SynchronizationExample {
 
     public static void main(String[] args) {
         Resource resource = new Resource();
+
         MyThread thread1 = new MyThread(resource);
         MyThread thread2 = new MyThread(resource);
+
         thread1.start();
         thread2.start();
         try {

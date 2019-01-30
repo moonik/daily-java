@@ -7,7 +7,7 @@ public class SemaphoreWithCondVariables {
 
     private ReentrantLock mLock;
     private Condition mCondition;
-    private volatile int resources;
+    private int resources;
 
     public SemaphoreWithCondVariables(int resources) {
         this.resources = resources;

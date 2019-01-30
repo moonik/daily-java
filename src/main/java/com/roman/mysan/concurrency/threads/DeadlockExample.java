@@ -1,6 +1,6 @@
 package com.roman.mysan.concurrency.threads;
 
-public class Deadlock {
+public class DeadlockExample {
 
     public static void main(String[] args) {
         ResourceA a = new ResourceA();
