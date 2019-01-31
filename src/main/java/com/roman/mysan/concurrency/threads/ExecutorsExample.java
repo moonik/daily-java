@@ -32,7 +32,7 @@ public class ExecutorsExample {
     public static void scheduledTaskExample() {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         Runnable runnable = () -> System.out.println("Foooo");
-        executorService.scheduleAtFixedRate(runnable, 0, 3L, TimeUnit.SECONDS); // executes every 3 seconds with initial delay 3 seconds
+        executorService.scheduleAtFixedRate(runnable, 0, 3L, TimeUnit.SECONDS); // executes every 3 seconds with initial delay 0 seconds
         //executorService.shutdown();
     }
 
