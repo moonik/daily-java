@@ -22,6 +22,7 @@ class ThreadA extends Thread {
         System.out.println(a.getI());
     }
 }
+
 class ThreadB extends Thread {
     private ResourceB b;
 
