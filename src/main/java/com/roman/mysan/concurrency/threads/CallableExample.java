@@ -1,16 +1,24 @@
 package com.roman.mysan.concurrency.threads;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 public class CallableExample {
+
+    private static void exampleTwo() throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future<Integer> future  = executor.submit(new MyCallable());
+        executor.shutdown();
+        System.out.println(future.get());
+    }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Callable<Integer> callable = new MyCallable();
         FutureTask<Integer> futureTask = new FutureTask<>(callable);
         new Thread(futureTask).start();
-        System.out.println(futureTask.get()); // get() waits when task is done and then it returns result
+        //System.out.println(futureTask.get()); // get() waits when task is done and then it returns result
+
+        //second example
+        exampleTwo();
     }
 
     static class MyCallable implements Callable<Integer> {

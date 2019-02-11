@@ -1,6 +1,32 @@
 package com.roman.mysan.concurrency.threads;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class DeadlockExample {
+
+
+    public void acquireLocks(Lock lock1, Lock lock2) {
+        while (true) {
+            boolean gotFirstLock = false;
+            boolean gotSecondLock = false;
+
+            try {
+                gotFirstLock = lock1.tryLock();
+                gotSecondLock = lock2.tryLock();
+            }finally {
+                if (gotFirstLock && gotSecondLock) {
+                    System.out.println("Got all locks");
+                    return;
+                } else {
+                    if (gotFirstLock) {
+                        lock1.unlock();
+                    } else
+                        lock2.unlock();
+                }
+            }
+        }
+    }
 
     public static void main(String[] args) {
         ResourceA a = new ResourceA();

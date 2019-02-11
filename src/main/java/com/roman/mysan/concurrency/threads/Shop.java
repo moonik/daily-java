@@ -1,6 +1,8 @@
 package com.roman.mysan.concurrency.threads;
 
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 //wait and notify example
 //producer - consumer pattern example
@@ -51,5 +53,32 @@ public class Shop {
 
         consumer.start();
         producer.start();
+    }
+
+    private final Object lock = new Object();
+    private LinkedList<Integer> list = new LinkedList<>();
+
+    private void producer() throws InterruptedException {
+        while (true) {
+            synchronized (lock) {
+                while (list.size() == 10) {
+                    lock.wait();
+                }
+                list.add(ThreadLocalRandom.current().nextInt());
+                lock.notify();
+            }
+        }
+    }
+
+    private void consumer() throws InterruptedException {
+        while (true) {
+            synchronized (lock) {
+                while (list.isEmpty()) {
+                    lock.wait();
+                }
+                list.removeFirst();
+                lock.notify();
+            }
+        }
     }
 }

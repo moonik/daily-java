@@ -19,6 +19,7 @@ public class ExecutorsExample {
         executor.execute(runnable);
         executor.invokeAll(new ArrayList<>(Arrays.asList(callable)));
         executor.shutdown();
+        //executor.awaitTermination(1, TimeUnit.DAYS);
     }
 
     public static void scheduledExecutorServiceExample() {

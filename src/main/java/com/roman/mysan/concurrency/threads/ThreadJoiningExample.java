@@ -3,16 +3,20 @@ package com.roman.mysan.concurrency.threads;
 public class ThreadJoiningExample {
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable first = () -> System.out.println("First");
-        Runnable second = () -> {
-            try {
-                Thread.sleep(1000);
-                System.out.println("Second");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        Runnable first = () -> {
+            for (int i = 0; i < 1000; i++);
+            System.out.println("First");
         };
-        Runnable third = () -> System.out.println("Third");
+
+        Runnable second = () -> {
+            System.out.println("Second.");
+            for (int i = 0; i < 1000; i++);
+        };
+
+        Runnable third = () -> {
+            for (int i = 0; i < 1000; i++);
+            System.out.println("Third");
+        };
 
         Thread t1 = new Thread(first);
         Thread t2 = new Thread(second);
