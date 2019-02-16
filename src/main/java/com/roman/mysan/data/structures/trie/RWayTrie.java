@@ -1,10 +1,5 @@
 package com.roman.mysan.data.structures.trie;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class RWayTrie {
 
     private static final int R = 256; //ASCII chars
